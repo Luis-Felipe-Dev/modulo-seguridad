@@ -1,60 +1,80 @@
 show tables;
 
+CREATE DATABASE bd_phone_store;
 
 /*Crear tabla*/
-CREATE TABLE USERS (
+CREATE TABLE CELULARES (
 
 	id int,
-	name varchar(255),
-	lastname varchar(255),
-	username varchar(20),
-	pass    varchar(100),
-	tipDoc  char(5),
-	nroDoc  varchar(20),
-	enable  int
+	marca varchar(100),
+	modelo varchar(100),
+	procesador varchar(50),
+	memoria varchar(50),
+	almacenamiento varchar(50),
+	descripcion text,
+	precio varchar(50),
+	estado  int
 );
 
 /* Añadimos id como primary Key*/
-ALTER TABLE USERS ADD PRIMARY KEY (id) ;
+ALTER TABLE CELULARES ADD PRIMARY KEY (id) ;
 
 /* Hacemos el campo id autoincremental y que no permita registros null*/
-ALTER TABLE USERS MODIFY COLUMN id int auto_increment NOT NULL;
-
-
-
+ALTER TABLE CELULARES MODIFY COLUMN id int auto_increment NOT NULL;
 
 
 /*Insertar*/
-INSERT INTO USERS (name,lastname,username,pass,tipDoc,nroDoc,enable)
-VALUES ('Jose','Zuniga','DNI73267572','123456','DNI','73267572',1);
+INSERT INTO CELULARES (marca,modelo,procesador,memoria,almacenamiento,descripcion,precio,estado)
+VALUES ('Motorola','Moto EDGE 20 Lite','MediaTek 720','6GB','128GB','Este celular inteligente tiene un diseño elegante fácilmente perceptible.','2269.00',1);
 
+INSERT INTO CELULARES (marca,modelo,procesador,memoria,almacenamiento,descripcion,precio,estado)
+VALUES ('Apple','iPhone 13 Midnight Negocios','Chip A15 Bionic','8GB','256GB','Apple ya nos tiene acostumbrado a este concepto desde sus predecesores.','7120.00',1);
 
-INSERT INTO USERS (name,lastname,username,pass,tipDoc,nroDoc,enable)
-VALUES ('Maria','Santillan','DNI46299021','123456','DNI','46299021',1);
+INSERT INTO CELULARES (marca,modelo,procesador,memoria,almacenamiento,descripcion,precio,estado)
+VALUES ('Xiaomi','Redmi 10C','Snapdragon 680','4GB','64GB','Un nuevo modelo por el diseño de un módulo cuadrado en la cual se encuentran las cámaras doble.','819.00',1);
 
+INSERT INTO CELULARES (marca,modelo,procesador,memoria,almacenamiento,descripcion,precio,estado)
+VALUES ('Samsung','Galaxy S22','Snapdragon 8 Gen 1','8GB','128GB','Es un dispositivo que integra el procesador Snapdragon 8 Gen 1 de ocho núcleos con velocidad de procesamiento.','3720.00',1);
 
+INSERT INTO CELULARES (marca,modelo,procesador,memoria,almacenamiento,descripcion,precio,estado)
+VALUES ('Apple','iPhone 11','Chip A13 Bionic','4GB','64GB','Su cámara angular incluye tecnología 100% Focus Pixeles.','3800.00',1);
 
 /*Actualizar*/
-UPDATE USERS SET name='Mariana' WHERE username ='DNI46299021';
-
-
-/*Eliminar*/
-DELETE FROM USERS WHERE username='DNI73267572';
-
+UPDATE celulares SET precio = '3800.00' WHERE id = 5;
 
 /*Consultar*/
-SELECT * FROM USERS;
+SELECT * FROM CELULARES;
 
 
+/*Procedimiento almacenado para registrar nuevo celular*/
 DELIMITER //
-CREATE PROCEDURE validarLogin(IN p_username varchar(20), IN p_pass varchar(100), OUT resultado INT)
+CREATE PROCEDURE ingresarCelular(IN p_marca varchar(100), IN p_modelo varchar(100),
+ IN p_procesador varchar(50), IN p_memoria varchar(50), IN p_almacenamiento varchar(50),
+ IN p_descripcion text, IN p_precio varchar(50), IN p_estado INT,
+ OUT resultado INT)
 BEGIN
-	SELECT COUNT(*) INTO resultado FROM USERS
-    WHERE username = p_username AND pass = p_pass;
+    INSERT INTO CELULARES (marca, modelo, procesador, memoria, almacenamiento, descripcion, precio, estado)
+	VALUES (p_marca, p_modelo, p_procesador, p_memoria, p_almacenamiento, p_descripcion, p_precio, p_estado);
+	SELECT COUNT(*) INTO resultado FROM CELULARES
+    WHERE marca = p_marca;
 END;
 delimiter ;
 
-CALL validarLogin('DNI46299021','123456', @outResult);
+CALL ingresarCelular('Marca prueba','Modelo prueba','Procesador prueba','Memoria prueba',
+'Almacenamiento prueba','Descripción prueba','Precio prueba',1, @outResult);
 SELECT @outResult;
 
-SELECT COUNT(*) FROM USERS WHERE username = 'DNI46299021' AND pass = '123456';
+/*Procedimiento almacenado para eliminar un registro*/
+DELIMITER //
+CREATE PROCEDURE eliminarCelular(IN p_id INT, OUT resultado INT)
+BEGIN
+	DELETE FROM CELULARES
+	WHERE id = p_id;
+	SELECT COUNT(*) INTO resultado FROM CELULARES
+    WHERE marca = p_marca;
+END;
+delimiter ;
+
+CALL eliminarCelular(6, @outResult);
+SELECT @outResult;
+
