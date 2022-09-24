@@ -51,18 +51,18 @@ DELIMITER //
 CREATE PROCEDURE ingresarCelular(IN p_marca varchar(100), IN p_modelo varchar(100),
  IN p_procesador varchar(50), IN p_memoria varchar(50), IN p_almacenamiento varchar(50),
  IN p_descripcion text, IN p_precio varchar(50), IN p_estado INT,
- OUT resultado INT)
+ OUT resultado_antes INT, OUT resultado_despues INT)
 BEGIN
+	SELECT COUNT(*) INTO resultado_antes FROM CELULARES
     INSERT INTO CELULARES (marca, modelo, procesador, memoria, almacenamiento, descripcion, precio, estado)
 	VALUES (p_marca, p_modelo, p_procesador, p_memoria, p_almacenamiento, p_descripcion, p_precio, p_estado);
-	SELECT COUNT(*) INTO resultado FROM CELULARES
-    WHERE marca = p_marca;
+	SELECT COUNT(*) INTO resultado_despues FROM CELULARES
 END;
 delimiter ;
 
 CALL ingresarCelular('Marca prueba','Modelo prueba','Procesador prueba','Memoria prueba',
-'Almacenamiento prueba','Descripción prueba','Precio prueba',1, @outResult);
-SELECT @outResult;
+'Almacenamiento prueba','Descripción prueba','Precio prueba',1, @outResultAntes, @outResultDespues);
+SELECT @outResultAntes as "Registros Antes", @outResultDespues as "Registros despues";
 
 
 /*Procedimiento almacenado para eliminar un registro*/
@@ -76,7 +76,7 @@ BEGIN
 END;
 delimiter ;
 
-CALL eliminarCelular(6, @outResult);
-SELECT @outResult;
+CALL eliminarCelular(4, @outResultAntes, @outResultDespues);
+SELECT @outResultAntes as "Registros Antes", @outResultDespues as "Registros despues";
 
 SELECT * FROM CELULARES ORDER BY id DESC LIMIT 1;

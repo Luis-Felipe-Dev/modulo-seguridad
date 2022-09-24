@@ -112,7 +112,7 @@ public class Application {
         int estadoCel = 1;
 
         //Crear CallableStatement para ingresar celular
-        CallableStatement callSpIngresarCelular = conexion.prepareCall("{call ingresarCelular(?,?,?,?,?,?,?,?,?)}");
+        CallableStatement callSpIngresarCelular = conexion.prepareCall("{call ingresarCelular(?,?,?,?,?,?,?,?,?,?)}");
         callSpIngresarCelular.setString(1, marcaCel);
         callSpIngresarCelular.setString(2, modeloCel);
         callSpIngresarCelular.setString(3, procesadorCel);
@@ -122,6 +122,7 @@ public class Application {
         callSpIngresarCelular.setString(7, precioCel);
         callSpIngresarCelular.setInt(8, estadoCel);
         callSpIngresarCelular.registerOutParameter(9, Types.INTEGER);
+        callSpIngresarCelular.registerOutParameter(10, Types.INTEGER);
         callSpIngresarCelular.executeQuery();
 
         //Crear PreparedStatement para mostrar nuevo celular registrado
@@ -147,12 +148,13 @@ public class Application {
         //EJERCICIO 4 CallableStatement para eliminar un celular
 
         //Dando valor a nuestra variable ID a eliminar
-        int idCelularEliminar = 17;
+        int idCelularEliminar = 2;
 
         //Crear CallableStatement para eliminar un celular
-        CallableStatement callSpEliminarCelular = conexion.prepareCall("{call eliminarCelular(?,?)}");
+        CallableStatement callSpEliminarCelular = conexion.prepareCall("{call eliminarCelular(?,?,?)}");
         callSpEliminarCelular.setInt(1, idCelularEliminar);
         callSpEliminarCelular.registerOutParameter(2, Types.INTEGER);
+        callSpEliminarCelular.registerOutParameter(3, Types.INTEGER);
         callSpEliminarCelular.executeQuery();
 
         //Crear PreparedStatement para listar celulares sin el registro eliminado
