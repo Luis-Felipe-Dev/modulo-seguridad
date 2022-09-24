@@ -124,7 +124,7 @@ public class Application {
         callSpIngresarCelular.registerOutParameter(9, Types.INTEGER);
         callSpIngresarCelular.executeQuery();
 
-        //Crear PreparedStatement para mostrar nuevo selular registrado
+        //Crear PreparedStatement para mostrar nuevo celular registrado
         String queryMostrarCelularNuevo = "SELECT * FROM CELULARES ORDER BY id DESC LIMIT 1";
         PreparedStatement ptmtMostrarCelularNuevo = conexion.prepareStatement(queryMostrarCelularNuevo);
         ResultSet rsMostrarCelularNuevo = ptmtMostrarCelularNuevo.executeQuery();

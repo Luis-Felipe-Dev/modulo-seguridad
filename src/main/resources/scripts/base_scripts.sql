@@ -64,6 +64,7 @@ CALL ingresarCelular('Marca prueba','Modelo prueba','Procesador prueba','Memoria
 'Almacenamiento prueba','Descripción prueba','Precio prueba',1, @outResult);
 SELECT @outResult;
 
+
 /*Procedimiento almacenado para eliminar un registro*/
 DELIMITER //
 CREATE PROCEDURE eliminarCelular(IN p_id INT, OUT resultado INT)
@@ -78,3 +79,4 @@ delimiter ;
 CALL eliminarCelular(6, @outResult);
 SELECT @outResult;
 
+SELECT * FROM CELULARES ORDER BY id DESC LIMIT 1;
