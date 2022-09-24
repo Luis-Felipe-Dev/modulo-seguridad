@@ -67,12 +67,12 @@ SELECT @outResultAntes as "Registros Antes", @outResultDespues as "Registros des
 
 /*Procedimiento almacenado para eliminar un registro*/
 DELIMITER //
-CREATE PROCEDURE eliminarCelular(IN p_id INT, OUT resultado INT)
+CREATE PROCEDURE eliminarCelular(IN p_id INT, OUT resultado_antes INT, OUT resultado_despues INT)
 BEGIN
+	SELECT COUNT(*) INTO resultado_antes FROM CELULARES;
 	DELETE FROM CELULARES
 	WHERE id = p_id;
-	SELECT COUNT(*) INTO resultado FROM CELULARES
-    WHERE marca = p_marca;
+	SELECT COUNT(*) INTO resultado_despues FROM CELULARES;
 END;
 delimiter ;
 
