@@ -10,18 +10,21 @@ import pe.isil.moduloseguridad.service.UserService;
 @Controller
 public class IndexController {
 
-
     @Qualifier("userServiceLocal")
     @Autowired
     private UserService userService;
 
 
-    @GetMapping({"/", "/home", "/index"})
-    public String index(Model model) {
-
-
-        model.addAttribute("lstusers", userService.getUsers());
+    @GetMapping(value = {"/","/home","/index"})
+    public String index(Model model){
+        model.addAttribute("atributo","SPRING MVC");
         return "index";
+    }
+
+    @GetMapping("/handler2")
+    public String vista(Model model){
+        model.addAttribute("att");
+        return "home";
     }
 
 }

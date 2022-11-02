@@ -4,22 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.isil.moduloseguridad.dao.UserDao;
 import pe.isil.moduloseguridad.model.User;
+
 import java.util.List;
 
 @Service("userServiceDao")
-public class UserServiceImplDao implements UserService{
+public class UserServiceImplDao implements UserService {
 
     @Autowired
     private UserDao userDao;
 
-
     @Override
     public List<User> getUsers() {
-        try{
-            return userDao.getUsers();
-        }catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return null;
     }
 }

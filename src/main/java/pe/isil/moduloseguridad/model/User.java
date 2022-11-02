@@ -1,33 +1,39 @@
 package pe.isil.moduloseguridad.model;
 
-import java.time.LocalDate;
+import javax.persistence.*;
+import java.util.List;
 
+@Table(name = "tbl_user",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"email"}, name = "user_email_unique")
+        })
+@Entity
 public class User {
 
-    private int id;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "name", nullable = false, length = 200)
     private String name;
+    @Column(name = "lastname", nullable = true, length = 200)
     private String lastname;
+    @Column(name = "email", nullable = false, length = 200)
     private String email;
-    private String password;
-    private LocalDate birthdate;
+    @Column(name = "photo_url", nullable = true, length = 500)
+    private String photoUrl;
+
+    @OneToMany(mappedBy="user", fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<UserApplication> userApplications;
 
     public User() {
+
     }
 
-    public User(int id, String name, String lastname, String email, String password, LocalDate birthdate) {
-        this.id = id;
-        this.name = name;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
-        this.birthdate = birthdate;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,19 +61,11 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public LocalDate getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(LocalDate birthdate) {
-        this.birthdate = birthdate;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }
