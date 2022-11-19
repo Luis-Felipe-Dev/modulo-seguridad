@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.transaction.Transactional;
+
 @Controller
 @RequestMapping("/")
 public class UserSecurityController {
@@ -42,8 +44,27 @@ public class UserSecurityController {
         } else {
             model.addAttribute("resp", "BIENVENIDO " + user.getName());
         }
-
         return "index";
+    }
 
+    @GetMapping("/resetpassword")
+    public String resetPassword() {
+        return "security/reset-password";
+    }
+    @Transactional
+    @PostMapping("resetpassword")
+    public String resetPassword(@ModelAttribute(name = "resetpassworduser") UserSecurity userSecurity, Model model) {
+
+        UserSecurity user = userSecurityService.findUserSecurityEmail(userSecurity.getEmail());
+
+        if (user != null) {
+            user.setPassword(user.getPassword() != null ? userSecurity.getPassword() : user.getPassword());
+
+            model.addAttribute("resp", "Hola " + user.getName() + ", su contraseña fue restablecida satisfactoriamente!!!");
+
+        } else {
+            model.addAttribute("resp", "Usuario no existe!!!");
+        }
+        return "reset-passw-message";
     }
 }

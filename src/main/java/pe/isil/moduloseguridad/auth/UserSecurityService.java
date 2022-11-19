@@ -6,4 +6,6 @@ public interface UserSecurityService {
 
     UserSecurity addUserSecurity(UserSecurity user);
 
+    UserSecurity findUserSecurityEmail(String email);
+
 }

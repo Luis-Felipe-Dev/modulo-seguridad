@@ -29,4 +29,15 @@ public class UserSecurityServiceImpl implements UserSecurityService {
         userSecurityRepository.save(user);
         return user;
     }
+    @Override
+    public UserSecurity findUserSecurityEmail(String email) {
+
+        Optional<UserSecurity> userToFindEmail = userSecurityRepository.findUserSecurityByEmail(email);
+
+        if (userToFindEmail.isPresent()) {
+            return userToFindEmail.get();
+        } else {
+            return null;
+        }
+    }
 }
