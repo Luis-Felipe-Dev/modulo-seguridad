@@ -41,16 +41,17 @@ public class UserSecurityController {
 
         if (user == null) {
             model.addAttribute("resp", "Credenciales incorrectas o usuario no existe");
+            return "ValidationResponse";
         } else {
-            model.addAttribute("resp", "BIENVENIDO " + user.getName());
+            return "redirect:/user/";
         }
-        return "index";
     }
 
     @GetMapping("/resetpassword")
     public String resetPassword() {
         return "security/reset-password";
     }
+
     @Transactional
     @PostMapping("resetpassword")
     public String resetPassword(@ModelAttribute(name = "resetpassworduser") UserSecurity userSecurity, Model model) {
