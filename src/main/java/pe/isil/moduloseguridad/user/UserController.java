@@ -32,7 +32,7 @@ public class UserController {
         }
         else{
             model.addAttribute("resp", result.getMessage());
-            return "./ValidationResponse";
+            return "/user/response";
         }
     }
 
@@ -51,7 +51,7 @@ public class UserController {
         }
         else{
             model.addAttribute("resp", "Correo ya está en uso, por favor probar con otro.");
-            return "./ValidationResponse";
+            return "/user/response";
         }
     }
 

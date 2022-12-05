@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Actualizar Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <form th:action="@{/application/update}" method="POST" th:object="${application}">
+
+        <input type="hidden" name="id" value="id" th:value="${applicationToUpdate.id}"/>
+
+        <!-- Name input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="name">Nombre:</label>
+            <input type="text" id="name" name="name" class="form-control" th:value="${applicationToUpdate.name}"/>
+        </div>
+
+        <!-- DataBase input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="dataBase">Base de datos:</label>
+            <input type="text" id="dataBase" name="dataBase" class="form-control" th:value="${applicationToUpdate.dataBase}"/>
+        </div>
+
+        <!-- Language input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="language">Lenguaje:</label>
+            <input type="text" id="language" name="language" class="form-control" th:value="${applicationToUpdate.language}"/>
+        </div>
+
+        <!-- User select -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="createUser">Usuario de creación:</label>
+            <select id="createUser" name="createUser" class="form-control">
+                <option th:value="${applicationToUpdate.createUser.id}" th:text="${applicationToUpdate.createUser.name}"></option>
+                <option th:each="user : ${listusers}"
+                        th:text="${user.name}"
+                        th:value="${user.id}"></option>
+            </select>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Actualizar</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+</body>
+</html>

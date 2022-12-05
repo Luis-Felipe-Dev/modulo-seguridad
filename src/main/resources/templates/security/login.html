@@ -8,35 +8,37 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-<form th:action="@{login}" method="POST" th:object="${authuser}">
-    <div class="container mt-4">
-        <h1 class="text-center mb-4">Login</h1>
-        <!-- Email input -->
-        <div class="form-outline mb-4">
-            <label class="form-label" for="email">Email</label>
-            <input type="email" id="email" name="email" class="form-control"/>
-        </div>
+<div class="container mt-5" style="width: 600px;">
+    <form th:action="@{login}" method="POST" th:object="${authuser}">
+        <div class="container mt-4">
+            <h1 class="text-center mb-4">Login</h1>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control"/>
+            </div>
 
-        <!-- Password input -->
-        <div class="form-outline mb-4">
-            <label class="form-label" for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control"/>
-        </div>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control"/>
+            </div>
 
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4">Ingresar</button>
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Ingresar</button>
 
-        <!-- Reset Password input -->
-        <div class="form-outline mb-4">
-            <a th:href="@{/resetpassword}">¿Olvido su contraseña?</a>
-        </div>
+            <!-- Reset Password input -->
+            <div class="form-outline mb-4">
+                <a th:href="@{/resetpassword}">¿Olvido su contraseña?</a>
+            </div>
 
-        <!-- Register buttons -->
-        <div class="text-center">
-            <p>¿No estás registrado? <a th:href="@{/adduserauth}">Registro</a></p>
+            <!-- Register buttons -->
+            <div class="text-center">
+                <p>¿No estás registrado? <a th:href="@{/adduserauth}">Registro</a></p>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

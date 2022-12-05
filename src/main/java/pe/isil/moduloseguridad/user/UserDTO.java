@@ -14,14 +14,14 @@ public class UserDTO {
     public static UserDTO whenUserEmailAlreadeyExists() {
         return UserDTO.builder()
                 .code("500")
-                .message("Correo ya existe")
+                .message("Correo ya existe.")
                 .build();
     }
 
     public static UserDTO whenUserRegistrationSucced() {
         return UserDTO.builder()
                 .code("200")
-                .message("usuario registrado correctamente")
+                .message("Usuario registrado correctamente")
                 .build();
     }
 

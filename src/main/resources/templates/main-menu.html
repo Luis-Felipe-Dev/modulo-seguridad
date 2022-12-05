@@ -3,15 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registrar User</title>
+    <title>Main Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-<div class="container mt-4">
-    <h1 th:text="${resp}"></h1>
-
-    <a th:href="@{/}" class="btn btn-primary">Regresar</a>
+<div class="container mt-4 text-center">
+    <h1 class="mb-4">Bienvenido al Menu Principal</h1>
+    <div class="container">
+        <a th:href="@{/application/}" class="btn btn-primary">Aplicaciones</a>
+        <a th:href="@{/user/}" class="btn btn-primary">Usuarios</a>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

@@ -43,7 +43,7 @@ public class UserSecurityController {
             model.addAttribute("resp", "Credenciales incorrectas o usuario no existe");
             return "ValidationResponse";
         } else {
-            return "redirect:/user/";
+            return "main-menu";
         }
     }
 
@@ -61,11 +61,17 @@ public class UserSecurityController {
         if (user != null) {
             user.setPassword(user.getPassword() != null ? userSecurity.getPassword() : user.getPassword());
 
-            model.addAttribute("resp", "Hola " + user.getName() + ", su contraseña fue restablecida satisfactoriamente!!!");
+//            model.addAttribute("resp", "Hola " + user.getName() + ", su contraseña fue restablecida satisfactoriamente!!!");
+            return "redirect:/";
 
         } else {
             model.addAttribute("resp", "Usuario no existe!!!");
+            return "reset-passw-message";
         }
-        return "reset-passw-message";
+    }
+
+    @GetMapping("/mainmenu")
+    public String mainMenu() {
+        return "main-menu";
     }
 }
