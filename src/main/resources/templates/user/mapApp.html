@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registrar User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Button 1 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Button 2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Button 3</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<br>
+<div class="container">
+
+    <form th:action="@{/user/map}" method="post" th:object="${user}" >
+
+        <div class="form-group">
+
+            <input type="hidden" name="id"  th:value="${userToUpdate.id}"/>
+
+            <!-- Name input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="name">Nombres:</label>
+                <input type="text" id="name" name ="name" class="form-control" th:value="${userToUpdate.name}"/>
+            </div>
+
+            <!-- Lastname input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="lastname">Apellidos:</label>
+                <input type="text" id="lastname" name="lastname" class="form-control" th:value="${userToUpdate.lastname}"/>
+            </div>
+
+
+            <label for="applications">Example select</label>
+            <select class="form-control" id="applications">
+                <option th:each="app : ${applications}" th:value="${app.id}" th:text="${app.name}"></option>
+            </select>
+
+            <!-- Email input -->
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Asignar</button>
+        </div>
+    </form>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js"
+        integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
+        crossorigin="anonymous"></script>
+</body>
+</html>

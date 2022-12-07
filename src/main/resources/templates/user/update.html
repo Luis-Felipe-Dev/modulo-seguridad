@@ -8,15 +8,17 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-<div class="container mt-4">
-    <form th:action="@{/user/update}" method="POST" th:object="${user}">
+<div class="container">
 
-        <input type="hidden" name="id" value="id" th:value="${userToUpdate.id}"/>
+    <form th:action="@{/user/update}" method="post" th:object="${user}" >
+
+
+        <input type="hidden" name="id"  th:value="${userToUpdate.id}"/>
 
         <!-- Name input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="name">Nombres:</label>
-            <input type="text" id="name" name="name" class="form-control" th:value="${userToUpdate.name}"/>
+            <input type="text" id="name" name ="name" class="form-control" th:value="${userToUpdate.name}"/>
         </div>
 
         <!-- Lastname input -->
@@ -28,17 +30,18 @@
         <!-- Email input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="email">Email:</label>
-            <input type="email" id="email" name="email" class="form-control" th:value="${userToUpdate.email}"/>
+            <input type="email" id="email" name ="email" class="form-control" th:value="${userToUpdate.email}" />
         </div>
 
-        <!-- UrlPhoto input -->
+        <!-- URLPhoto input -->
         <div class="form-outline mb-4">
-            <label class="form-label" for="urlPhoto">Foto:</label>
+            <label class="form-label" for="urlPhoto"> Foto :</label>
             <input type="text" id="urlPhoto" name="urlPhoto" class="form-control" th:value="${userToUpdate.urlPhoto}"/>
         </div>
 
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary btn-block mb-4">Actualizar</button>
+
     </form>
 </div>
 

@@ -1,10 +1,11 @@
 package pe.isil.moduloseguridad.user;
 
 import lombok.Data;
-import pe.isil.moduloseguridad.application.Application;
+import pe.isil.moduloseguridad.app.Application;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tbl_user", uniqueConstraints = {
@@ -21,10 +22,11 @@ public class User {
 
     private String lastname;
 
+    @Column(name="email", length = 100)
     private String email;
 
     private String urlPhoto;
 
-    @OneToMany(mappedBy = "createUser")
-    private List<Application> applications;
+    @ManyToMany(mappedBy = "users")
+    private Set<Application> applications = new HashSet<>();
 }

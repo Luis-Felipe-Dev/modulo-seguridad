@@ -8,37 +8,40 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-<div class="container mt-4">
-    <form th:action="@{/user/register}" method="POST" th:object="${user}">
+<div class="container">
+
+    <form th:action="@{/user/register}" method="post" th:object="${user}" >
 
         <!-- Name input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="name">Nombres:</label>
-            <input type="text" id="name" name="name" class="form-control"/>
+            <input type="text" id="name" name ="name" class="form-control"/>
         </div>
 
         <!-- Lastname input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="lastname">Apellidos:</label>
-            <input type="text" id="lastname" name="lastname" class="form-control"/>
+            <input type="text" id="lastname" name="lastname" class="form-control" />
         </div>
 
         <!-- Email input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="email">Email:</label>
-            <input type="email" id="email" name="email" class="form-control"/>
+            <input type="email" id="email" name ="email" class="form-control"  />
         </div>
 
-        <!-- UrlPhoto input -->
+        <!-- URLPhoto input -->
         <div class="form-outline mb-4">
-            <label class="form-label" for="urlPhoto">Foto:</label>
-            <input type="text" id="urlPhoto" name="urlPhoto" class="form-control"/>
+            <label class="form-label" for="urlPhoto"> Foto :</label>
+            <input type="text" id="urlPhoto" name="urlPhoto" class="form-control" />
         </div>
 
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary btn-block mb-4">Registrar</button>
+
     </form>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
